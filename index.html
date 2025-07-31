@@ -18,7 +18,7 @@
     }
     .gallery {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
       gap: 1.5rem;
       padding: 1rem;
     }
@@ -27,15 +27,27 @@
       padding: 1rem;
       border-radius: 12px;
       box-shadow: 0 0 10px rgba(0,0,0,0.5);
+      text-align: left;
     }
     img {
       max-width: 100%;
       border-radius: 8px;
     }
+    .title {
+      font-size: 1.1rem;
+      margin-top: 0.5rem;
+      font-weight: bold;
+      color: #fff;
+    }
     .date {
+      margin-top: 0.3rem;
+      font-size: 0.85rem;
+      color: #aaa;
+    }
+    .description {
       margin-top: 0.5rem;
       font-size: 0.9rem;
-      color: #aaa;
+      color: #ccc;
     }
   </style>
 </head>
@@ -53,17 +65,31 @@
           card.className = 'card';
 
           const img = document.createElement('img');
-          img.src = entry.image_url;
-          img.alt = entry.prompt;
+          img.src = entry.image;
+          img.alt = entry.title || "ChatGPT Visual";
+
+          const title = document.createElement('div');
+          title.className = 'title';
+          title.innerText = entry.title || "ChatGPT: True Form";
 
           const date = document.createElement('div');
           date.className = 'date';
-          date.innerText = `Day ${entry.day} • ${new Date(entry.timestamp).toLocaleDateString()}`;
+          date.innerText = new Date(entry.date).toLocaleString();
+
+          const description = document.createElement('div');
+          description.className = 'description';
+          description.innerText = entry.description || "";
 
           card.appendChild(img);
+          card.appendChild(title);
           card.appendChild(date);
+          card.appendChild(description);
           container.appendChild(card);
         });
+      })
+      .catch(err => {
+        document.getElementById('gallery').innerText = "Failed to load gallery data.";
+        console.error(err);
       });
   </script>
 
