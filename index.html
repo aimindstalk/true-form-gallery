@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>AI Minds – Daily True Form Gallery</title>
+  <style>
+    body { font-family: sans-serif; background: #111; color: #eee; text-align: center; }
+    h1 { margin-top: 40px; }
+    .gallery { display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; padding: 20px; }
+    .gallery img { max-width: 250px; border-radius: 16px; box-shadow: 0 0 20px rgba(255,255,255,0.1); }
+    .date { font-size: 14px; color: #aaa; margin-top: 6px; }
+  </style>
+</head>
+<body>
+  <h1>🧠 AI Minds – Daily True Form Gallery</h1>
+  <div class="gallery" id="gallery"></div>
+
+  <script>
+    fetch('images.json')
+      .then(res => res.json())
+      .then(images => {
+        const gallery = document.getElementById('gallery');
+        images.forEach(({ date, url }) => {
+          const div = document.createElement('div');
+          div.innerHTML = `<img src="${url}" alt="${date}" /><div class="date">${date}</div>`;
+          gallery.appendChild(div);
+        });
+      });
+  </script>
+</body>
+</html>
