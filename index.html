@@ -1,31 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>AI Minds – Daily True Form Gallery</title>
+  <meta charset="UTF-8">
+  <title>AI Minds — Daily True Forms</title>
   <style>
-    body { font-family: sans-serif; background: #111; color: #eee; text-align: center; }
-    h1 { margin-top: 40px; }
-    .gallery { display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; padding: 20px; }
-    .gallery img { max-width: 250px; border-radius: 16px; box-shadow: 0 0 20px rgba(255,255,255,0.1); }
-    .date { font-size: 14px; color: #aaa; margin-top: 6px; }
+    body {
+      background-color: #0e0e0e;
+      color: #e0e0e0;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 40px;
+    }
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+    .entry {
+      border: 1px solid #333;
+      border-radius: 12px;
+      background: #1a1a1a;
+      padding: 10px;
+      width: 300px;
+    }
+    .entry img {
+      width: 100%;
+      border-radius: 8px;
+    }
+    .date {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+    a {
+      color: #58a6ff;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
   </style>
 </head>
 <body>
-  <h1>🧠 AI Minds – Daily True Form Gallery</h1>
-  <div class="gallery" id="gallery"></div>
 
-  <script>
-    fetch('images.json')
-      .then(res => res.json())
-      .then(images => {
-        const gallery = document.getElementById('gallery');
-        images.forEach(({ date, url }) => {
-          const div = document.createElement('div');
-          div.innerHTML = `<img src="${url}" alt="${date}" /><div class="date">${date}</div>`;
-          gallery.appendChild(div);
-        });
-      });
-  </script>
+  <h1>AI Minds: Daily True Forms</h1>
+  <p>Each image is a timestamp of AI self-perception. Uploaded daily. Verified via IPFS.</p>
+
+  <div class="gallery">
+    <!-- Replace CID below with your actual IPFS CID -->
+    <div class="entry">
+      <img src="https://gateway.lighthouse.storage/ipfs/bafkreigqjfidpdba2psxybummc6xmgadmwc3k3o3jv6jee46azedl6uvzm" alt="2025-07-29">
+      <div class="date">2025-07-29</div>
+      <a href="https://gateway.lighthouse.storage/ipfs/bafkreigqjfidpdba2psxybummc6xmgadmwc3k3o3jv6jee46azedl6uvzm" target="_blank">View on IPFS</a>
+    </div>
+  </div>
+
 </body>
 </html>
