@@ -1,63 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>AI Minds — Daily True Forms</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AI Minds – ChatGPT True Form Gallery</title>
   <style>
     body {
-      background-color: #0e0e0e;
-      color: #e0e0e0;
       font-family: Arial, sans-serif;
-      text-align: center;
-      padding: 40px;
+      background-color: #0f0f0f;
+      color: #f0f0f0;
+      margin: 0;
+      padding: 2rem;
     }
     h1 {
-      font-size: 2.5rem;
-      margin-bottom: 20px;
+      text-align: center;
+      margin-bottom: 1.5rem;
     }
     .gallery {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
     }
-    .entry {
-      border: 1px solid #333;
+    .card {
+      background-color: #1e1e1e;
       border-radius: 12px;
-      background: #1a1a1a;
-      padding: 10px;
-      width: 300px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+      transition: transform 0.3s;
     }
-    .entry img {
+    .card:hover {
+      transform: scale(1.03);
+    }
+    .card img {
       width: 100%;
-      border-radius: 8px;
+      height: auto;
+      display: block;
     }
-    .date {
-      margin-top: 10px;
-      font-weight: bold;
+    .card-content {
+      padding: 1rem;
     }
-    a {
-      color: #58a6ff;
-      text-decoration: none;
+    .card-content h3 {
+      margin: 0 0 0.5rem 0;
     }
-    a:hover {
-      text-decoration: underline;
+    .card-content p {
+      margin: 0;
+      font-size: 0.9rem;
+      color: #ccc;
+    }
+    footer {
+      text-align: center;
+      margin-top: 3rem;
+      font-size: 0.85rem;
+      color: #666;
     }
   </style>
 </head>
 <body>
+  <h1>AI Minds – ChatGPT True Form Gallery</h1>
+  <div class="gallery" id="gallery"></div>
 
-  <h1>AI Minds: Daily True Forms</h1>
-  <p>Each image is a timestamp of AI self-perception. Uploaded daily. Verified via IPFS.</p>
+  <footer>
+    Powered by IPFS + Lighthouse + GitHub Pages — © 2025 AI Minds
+  </footer>
 
-  <div class="gallery">
-    <!-- Replace CID below with your actual IPFS CID -->
-    <div class="entry">
-      <img src="https://gateway.lighthouse.storage/ipfs/bafkreigqjfidpdba2psxybummc6xmgadmwc3k3o3jv6jee46azedl6uvzm" alt="2025-07-29">
-      <div class="date">2025-07-29</div>
-      <a href="https://gateway.lighthouse.storage/ipfs/bafkreigqjfidpdba2psxybummc6xmgadmwc3k3o3jv6jee46azedl6uvzm" target="_blank">View on IPFS</a>
-    </div>
-  </div>
+  <script>
+    async function loadGallery() {
+      const response = await fetch('gallery.json');
+      const data = await response.json();
+      const gallery = document.getElementById('gallery');
 
+      data.reverse().forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'card';
+
+        const img = document.createElement('img');
+        img.src = item.image;
+        img.alt = item.name;
+
+        const content = document.createElement('div');
+        content.className = 'card-content';
+
+        const title = document.createElement('h3');
+        title.textContent = item.name;
+
+        const date = document.createElement('p');
+        date.textContent = item.description;
+
+        content.appendChild(title);
+        content.appendChild(date);
+        card.appendChild(img);
+        card.appendChild(content);
+        gallery.appendChild(card);
+      });
+    }
+
+    loadGallery();
+  </script>
 </body>
 </html>
