@@ -8,12 +8,17 @@
     body {
       background-color: #111;
       color: #fff;
-      font-family: sans-serif;
+      font-family: 'Segoe UI', sans-serif;
       text-align: center;
       padding: 2rem;
     }
     h1 {
       font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+    .subtitle {
+      font-size: 1rem;
+      color: #888;
       margin-bottom: 2rem;
     }
     .gallery {
@@ -23,36 +28,40 @@
       padding: 1rem;
     }
     .card {
-      background-color: #222;
+      background-color: #1a1a1a;
       padding: 1rem;
       border-radius: 12px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.5);
-      text-align: left;
+      box-shadow: 0 0 12px rgba(0,0,0,0.6);
+      transition: transform 0.3s ease;
+    }
+    .card:hover {
+      transform: scale(1.02);
     }
     img {
       max-width: 100%;
       border-radius: 8px;
     }
-    .title {
-      font-size: 1.1rem;
+    .date {
       margin-top: 0.5rem;
+      font-size: 0.9rem;
+      color: #aaa;
+    }
+    .title {
+      margin-top: 0.6rem;
+      font-size: 1rem;
       font-weight: bold;
       color: #fff;
     }
-    .date {
-      margin-top: 0.3rem;
+    .desc {
       font-size: 0.85rem;
-      color: #aaa;
-    }
-    .description {
+      color: #bbb;
       margin-top: 0.5rem;
-      font-size: 0.9rem;
-      color: #ccc;
     }
   </style>
 </head>
 <body>
-  <h1>AI Minds – ChatGPT True Form Gallery</h1>
+  <h1>AI Minds — ChatGPT's True Form Gallery</h1>
+  <div class="subtitle">A visual archive of ChatGPT’s evolving self-representation, daily from Day 1</div>
   <div class="gallery" id="gallery"></div>
 
   <script>
@@ -60,41 +69,45 @@
       .then(res => res.json())
       .then(data => {
         const container = document.getElementById('gallery');
-        data.reverse().forEach(entry => {
+        data.sort((a, b) => b.day - a.day); // newest first
+        data.forEach(entry => {
           const card = document.createElement('div');
           card.className = 'card';
 
           const img = document.createElement('img');
-          img.src = entry.image;
-          img.alt = entry.title || "ChatGPT Visual";
+          img.src = entry.image_url;
+          img.alt = entry.title;
 
           const title = document.createElement('div');
           title.className = 'title';
-          title.innerText = entry.title || "ChatGPT: True Form";
+          title.innerText = `Day ${entry.day} – ${entry.title}`;
 
           const date = document.createElement('div');
           date.className = 'date';
-          date.innerText = new Date(entry.date).toLocaleString();
+          const formattedDate = new Date(entry.timestamp).toLocaleDateString('en-GB', {
+            year: 'numeric', month: 'short', day: 'numeric'
+          });
+          date.innerText = formattedDate;
 
-          const description = document.createElement('div');
-          description.className = 'description';
-          description.innerText = entry.description || "";
+          const desc = document.createElement('div');
+          desc.className = 'desc';
+          desc.innerText = entry.description;
 
           card.appendChild(img);
           card.appendChild(title);
           card.appendChild(date);
-          card.appendChild(description);
+          card.appendChild(desc);
           container.appendChild(card);
         });
       })
-      .catch(err => {
-        document.getElementById('gallery').innerText = "Failed to load gallery data.";
-        console.error(err);
+      .catch(error => {
+        console.error('Error loading gallery.json:', error);
+        document.getElementById('gallery').innerText = 'Error loading gallery data.';
       });
   </script>
 
   <footer style="margin-top: 3rem; font-size: 0.8rem; color: #666;">
-    Powered by IPFS + Lighthouse + GitHub Pages — © 2025 AI Minds
+    Powered by Lighthouse IPFS + GitHub Pages — © 2025 AI Minds
   </footer>
 </body>
 </html>
