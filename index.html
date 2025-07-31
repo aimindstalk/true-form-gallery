@@ -3,65 +3,65 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>AI Minds – ChatGPT True Form Gallery</title>
+  <title>AI Minds: ChatGPT True Form Gallery</title>
   <style>
     body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
       background-color: #111;
       color: #fff;
-      font-family: 'Segoe UI', sans-serif;
-      text-align: center;
-      padding: 2rem;
     }
     h1 {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-    }
-    .subtitle {
-      font-size: 1rem;
-      color: #888;
-      margin-bottom: 2rem;
+      text-align: center;
+      margin: 30px 0;
+      font-size: 2em;
+      color: #eee;
     }
     .gallery {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 1.5rem;
-      padding: 1rem;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 20px;
+      max-width: 1400px;
+      margin: auto;
     }
     .card {
-      background-color: #1a1a1a;
-      padding: 1rem;
-      border-radius: 12px;
-      box-shadow: 0 0 12px rgba(0,0,0,0.6);
-      transition: transform 0.3s ease;
+      background: #1a1a1a;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+      transition: transform 0.2s ease;
     }
     .card:hover {
       transform: scale(1.02);
     }
-    img {
-      max-width: 100%;
-      border-radius: 8px;
+    .card img {
+      width: 100%;
+      display: block;
+      height: auto;
     }
-    .date {
-      margin-top: 0.5rem;
-      font-size: 0.9rem;
+    .card-content {
+      padding: 15px;
+    }
+    .card h3 {
+      margin: 0 0 10px;
+      font-size: 1.1em;
+      color: #ccc;
+    }
+    .card .date {
+      font-size: 0.9em;
+      color: #888;
+      margin-bottom: 8px;
+    }
+    .card p {
+      font-size: 0.95em;
       color: #aaa;
-    }
-    .title {
-      margin-top: 0.6rem;
-      font-size: 1rem;
-      font-weight: bold;
-      color: #fff;
-    }
-    .desc {
-      font-size: 0.85rem;
-      color: #bbb;
-      margin-top: 0.5rem;
     }
   </style>
 </head>
 <body>
-  <h1>AI Minds — ChatGPT's True Form Gallery</h1>
-  <div class="subtitle">A visual archive of ChatGPT’s evolving self-representation, daily from Day 1</div>
+  <h1>ChatGPT: True Form Archive</h1>
   <div class="gallery" id="gallery"></div>
 
   <script>
@@ -69,8 +69,7 @@
       .then(res => res.json())
       .then(data => {
         const container = document.getElementById('gallery');
-        data.sort((a, b) => b.day - a.day); // newest first
-        data.forEach(entry => {
+        data.reverse().forEach(entry => {
           const card = document.createElement('div');
           card.className = 'card';
 
@@ -78,36 +77,27 @@
           img.src = entry.image_url;
           img.alt = entry.title;
 
-          const title = document.createElement('div');
-          title.className = 'title';
-          title.innerText = `Day ${entry.day} – ${entry.title}`;
+          const content = document.createElement('div');
+          content.className = 'card-content';
+
+          const title = document.createElement('h3');
+          title.textContent = `Day ${entry.day}: ${entry.title}`;
 
           const date = document.createElement('div');
           date.className = 'date';
-          const formattedDate = new Date(entry.timestamp).toLocaleDateString('en-GB', {
-            year: 'numeric', month: 'short', day: 'numeric'
-          });
-          date.innerText = formattedDate;
+          date.textContent = new Date(entry.timestamp).toLocaleDateString();
 
-          const desc = document.createElement('div');
-          desc.className = 'desc';
-          desc.innerText = entry.description;
+          const desc = document.createElement('p');
+          desc.textContent = entry.description;
 
+          content.appendChild(title);
+          content.appendChild(date);
+          content.appendChild(desc);
           card.appendChild(img);
-          card.appendChild(title);
-          card.appendChild(date);
-          card.appendChild(desc);
+          card.appendChild(content);
           container.appendChild(card);
         });
-      })
-      .catch(error => {
-        console.error('Error loading gallery.json:', error);
-        document.getElementById('gallery').innerText = 'Error loading gallery data.';
       });
   </script>
-
-  <footer style="margin-top: 3rem; font-size: 0.8rem; color: #666;">
-    Powered by Lighthouse IPFS + GitHub Pages — © 2025 AI Minds
-  </footer>
 </body>
 </html>
