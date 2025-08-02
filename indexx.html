@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BreakupCare – You’re Not Alone</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Open+Sans&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Open Sans', sans-serif;
+      background: #fefefe;
+      color: #333;
+    }
+    header {
+      background: linear-gradient(to right, #cc2b5e, #753a88);
+      color: white;
+      padding: 60px 20px;
+      text-align: center;
+    }
+    header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3em;
+      margin-bottom: 0.3em;
+    }
+    header p {
+      font-size: 1.2em;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .cta {
+      margin-top: 30px;
+    }
+    .cta a {
+      background: white;
+      color: #cc2b5e;
+      text-decoration: none;
+      padding: 15px 30px;
+      border-radius: 50px;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+    .cta a:hover {
+      background: #ffeff5;
+    }
+    section {
+      padding: 60px 20px;
+      max-width: 900px;
+      margin: auto;
+    }
+    .steps, .testimonials, .support-options {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+    }
+    .step, .testimonial, .support {
+      background: #fff;
+      padding: 20px;
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    }
+    .step h3, .testimonial h3, .support h3 {
+      margin-top: 0;
+      font-family: 'Playfair Display', serif;
+      color: #cc2b5e;
+    }
+    .support i {
+      font-size: 2em;
+      color: #753a88;
+      margin-bottom: 10px;
+    }
+    footer {
+      text-align: center;
+      padding: 40px 20px;
+      background: #f8f8f8;
+      font-size: 0.9em;
+    }
+    .quote-banner {
+      background: #faf2f6;
+      padding: 40px 20px;
+      text-align: center;
+      font-size: 1.4em;
+      font-style: italic;
+      color: #753a88;
+    }
+    .booking-section {
+      background: #fff0f5;
+      border-radius: 20px;
+      padding: 40px 30px;
+      text-align: center;
+      margin-top: 40px;
+    }
+    .booking-section h2 {
+      font-family: 'Playfair Display';
+      color: #cc2b5e;
+      margin-bottom: 20px;
+    }
+    .booking-section input, .booking-section select, .booking-section button {
+      padding: 12px;
+      margin: 10px 0;
+      width: 100%;
+      max-width: 400px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+    }
+    .booking-section button {
+      background: #753a88;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .booking-section button:hover {
+      background: #5a2d6b;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>BreakupCare</h1>
+    <p>You’re not alone. Whether it just happened or still hurts, we’re here to help you heal, rebuild, and move forward.</p>
+    <div class="cta">
+      <a href="#start">Get Support Now</a>
+    </div>
+  </header>
+
+  <section id="start">
+    <h2 style="text-align:center; font-family: 'Playfair Display'; color:#753a88">How It Works</h2>
+    <div class="steps">
+      <div class="step">
+        <h3>1. Share Anonymously</h3>
+        <p>Tell us your story. Let it out. You can post on our Help Wall without revealing your name.</p>
+      </div>
+      <div class="step">
+        <h3>2. Talk to a Real Human</h3>
+        <p>Our trained breakup listeners are here 24/7. Chat or schedule a private call.</p>
+      </div>
+      <div class="step">
+        <h3>3. Heal at Your Pace</h3>
+        <p>Browse healing blogs, journaling prompts, and tools that help you rebuild stronger.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="quote-banner">
+    "Breakups hurt, but so does holding on to what no longer loves you."
+  </div>
+
+  <section>
+    <h2 style="text-align:center; font-family: 'Playfair Display'; color:#753a88">Get Immediate Support</h2>
+    <div class="support-options">
+      <div class="support">
+        <i class="fas fa-comments"></i>
+        <h3>Instant Chat</h3>
+        <p>₹49/session. Anonymous, quick, and human.</p>
+      </div>
+      <div class="support">
+        <i class="fas fa-phone"></i>
+        <h3>Private Call</h3>
+        <p>₹149 for 20 minutes. Speak to a professional breakup listener.</p>
+      </div>
+      <div class="support">
+        <i class="fas fa-heart"></i>
+        <h3>1-on-1 Session</h3>
+        <p>₹499 for expert therapy call. Confidential and deep healing.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="booking-section">
+    <h2>Book a Call or Chat</h2>
+    <form>
+      <input type="text" placeholder="Your Nickname (optional)" /><br>
+      <select>
+        <option value="chat">Anonymous Chat – ₹49</option>
+        <option value="call">Private Call – ₹149</option>
+        <option value="therapy">Therapy Session – ₹499</option>
+      </select><br>
+      <input type="datetime-local" /><br>
+      <button type="submit">Confirm Booking</button>
+    </form>
+  </section>
+
+  <section>
+    <h2 style="text-align:center; font-family: 'Playfair Display'; color:#753a88">What Others Say</h2>
+    <div class="testimonials">
+      <div class="testimonial">
+        <h3>Priya, Delhi</h3>
+        <p>I cried while chatting, but it was the first time someone truly understood what I felt. Thank you.</p>
+      </div>
+      <div class="testimonial">
+        <h3>Rohan, Pune</h3>
+        <p>BreakupCare helped me stop blaming myself. The call changed everything. I feel lighter now.</p>
+      </div>
+      <div class="testimonial">
+        <h3>Sana, Bengaluru</h3>
+        <p>I shared my letter anonymously and felt seen. This place heals quietly but deeply.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2025 BreakupCare. Built with empathy for every heart that’s healing.
+  </footer>
+</body>
+</html>
