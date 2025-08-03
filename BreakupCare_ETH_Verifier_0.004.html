@@ -1,0 +1,83 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>BreakupCare ETH Penalty Ledger</title>
+  <script src="https://cdn.jsdelivr.net/npm/ethers@6.6.2/dist/ethers.umd.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f8f8f8;
+      padding: 2em;
+      color: #222;
+      text-align: center;
+    }
+    h1 {
+      font-size: 28px;
+      color: #333;
+    }
+    .box {
+      margin: 2em auto;
+      padding: 1.5em;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      max-width: 500px;
+    }
+    button {
+      background-color: #007bff;
+      color: white;
+      padding: 0.7em 1.2em;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .result {
+      margin-top: 1em;
+      font-size: 18px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <h1>🔐 BreakupCare ETH Ledger Viewer</h1>
+    <p>Verify if you're the rightful owner of wallet:</p>
+    <code>0xCcC00B7De9766b6cb20D610077b2a0bC694B5Cd3</code>
+    <p>Total ETH Owed: <strong>0.004 ETH</strong></p>
+    <button onclick="verifyWallet()">✅ Verify My Wallet</button>
+    <div class="result" id="resultArea"></div>
+  </div>
+
+  <script>
+    async function verifyWallet() {
+      try {
+        if (!window.ethereum) {
+          document.getElementById("resultArea").innerText = "❌ MetaMask not detected.";
+          return;
+        }
+
+        const provider = new ethers.BrowserProvider(window.ethereum);
+        const signer = await provider.getSigner();
+        const userAddress = await signer.getAddress();
+
+        const target = "0xCcC00B7De9766b6cb20D610077b2a0bC694B5Cd3".toLowerCase();
+        const actual = userAddress.toLowerCase();
+
+        if (actual === target) {
+          document.getElementById("resultArea").innerText =
+            "✅ Verified: You own the wallet owed 0.004 ETH.";
+        } else {
+          document.getElementById("resultArea").innerText =
+            `❌ Wallet does not match. You connected: ${userAddress}`;
+        }
+      } catch (err) {
+        console.error(err);
+        document.getElementById("resultArea").innerText = "⚠️ Error: " + err.message;
+      }
+    }
+  </script>
+</body>
+</html>
